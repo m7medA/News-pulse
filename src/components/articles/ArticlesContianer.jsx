@@ -8,7 +8,12 @@ function ArticlesContianer({
   isLoading,
   error,
 }) {
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <div className="relative h-80">
+        <Loading />
+      </div>
+    );
 
   return (
     <section className="flex flex-col gap-8">

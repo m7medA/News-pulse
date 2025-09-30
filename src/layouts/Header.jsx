@@ -6,7 +6,7 @@ import MainNav from "../components/header/MainNav";
 
 function Header() {
   return (
-    <header className="layout">
+    <header className="">
       <HeaderUtilityBar />
 
       <div className="border-b-2 py-4 md:py-6 flex justify-center">

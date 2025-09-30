@@ -12,7 +12,8 @@ function MainNav() {
     queryFn: getCategories,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return <p className="third-color text-center font-semibold">Loading...</p>;
 
   const { categories } = data;
 

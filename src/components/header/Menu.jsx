@@ -9,22 +9,12 @@ import { getCategories } from "../../services/newsServices";
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log(categories);
-
   const { data, isLoading, error } = useQuery({
     queryKey: ["category"],
     queryFn: getCategories,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-
-  console.log(data);
-
-  const { categories } = data;
-
-  console.log(categories);
-
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="third-color font-semibold">Loading...</p>;
 
   if (error) return <p>{error}</p>;
 
@@ -69,7 +59,7 @@ function Menu() {
           </button>
         </div>
         <ul className="py-4 space-y-3">
-          {categories.map((cat) => (
+          {data?.categories?.map((cat) => (
             <li key={cat} onClick={() => setIsOpen((open) => !open)}>
               <NavLink
                 to={`/categorypage/${cat}`}
