@@ -2,6 +2,7 @@ import getFormattedDate from "../../utils/getFormattedDate";
 import { AiOutlineGlobal } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import Menu from "./Menu";
+import UserInfo from "./UserInfo";
 
 function HeaderUtilityBar() {
   return (
@@ -18,6 +19,10 @@ function HeaderUtilityBar() {
 
       <div className="order-3 lg:order-0 w-full lg:w-[64%] flex justify-center py-1">
         <SearchBar />
+      </div>
+
+      <div className="flex flex-col justify-center">
+        <UserInfo />
       </div>
 
       <div className="flex flex-col justify-center">

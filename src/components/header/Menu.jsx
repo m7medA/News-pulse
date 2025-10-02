@@ -9,14 +9,14 @@ import { getCategories } from "../../services/newsServices";
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["category"],
-    queryFn: getCategories,
-  });
+  const queryClient = useQueryClient();
 
-  if (isLoading) return <p className="third-color font-semibold">Loading...</p>;
+  const data = queryClient.getQueryData(["categories"]);
 
-  if (error) return <p>{error}</p>;
+  // const { data, isLoading, error } = useQuery({
+  //   queryKey: ["category"],
+  //   queryFn: getCategories,
+  // });
 
   return (
     <div className="flex flex-col justify-center">
@@ -72,7 +72,6 @@ function Menu() {
             </li>
           ))}
         </ul>
-        )
       </aside>
     </div>
   );

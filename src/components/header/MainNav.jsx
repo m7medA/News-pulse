@@ -1,14 +1,10 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import { getCategories } from "../../services/newsServices";
 
 function MainNav() {
-  const queryClient = useQueryClient();
-
-  // console.log(categories);
-
   const { data, isLoading, error } = useQuery({
-    queryKey: ["category"],
+    queryKey: ["categories"],
     queryFn: getCategories,
   });
 

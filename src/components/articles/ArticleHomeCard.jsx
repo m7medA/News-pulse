@@ -16,7 +16,7 @@ function ArticleHomeCard({ article }) {
           loading="lazy"
         />
       ) : (
-        <div class="w-full h-64 md:h-56 lg:h-64 flex items-center justify-center bg-gray-200 text-gray-600 rounded">
+        <div className="w-full h-64 md:h-56 lg:h-64 flex items-center justify-center bg-gray-200 text-gray-600 rounded">
           <FaRegImage size={48} />
         </div>
       )}

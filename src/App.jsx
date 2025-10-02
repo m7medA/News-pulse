@@ -1,6 +1,11 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 const Loading = lazy(() => import("./components/Loading"));
 const AppLayout = lazy(() => import("./layouts/AppLayout"));
@@ -8,6 +13,11 @@ const Error = lazy(() => import("./components/Error"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const SearchResultPage = lazy(() => import("./pages/SearchResultPage"));
+const UserInfoPage = lazy(() => import("./pages/UserInfoPage"));
+
+const AuthLayout = lazy(() => import("./layouts/AuthLayout"));
+const Login = lazy(() => import("./features/auth/Login"));
+const Signup = lazy(() => import("./features/auth/Signup"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,15 +40,27 @@ function App() {
         { path: "/", element: <HomePage /> },
         { path: "/categorypage/:category", element: <CategoryPage /> },
         { path: "/searchresultpage/:query", element: <SearchResultPage /> },
+        { path: "/userinfo", element: <UserInfoPage /> },
+      ],
+    },
+    {
+      path: "/auth",
+      element: <AuthLayout />,
+      children: [
+        { index: true, element: <Navigate to="login" replace /> },
+        { path: "login", element: <Login /> },
+        { path: "signup", element: <Signup /> },
       ],
     },
   ]);
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router}></RouterProvider>
-      </QueryClientProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}></RouterProvider>
+        </QueryClientProvider>
+      </AuthProvider>
     </>
   );
 }
