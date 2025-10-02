@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
-import { getCategories } from "../../services/newsServices";
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
