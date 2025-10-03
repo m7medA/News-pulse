@@ -24,7 +24,7 @@ function UserInfo() {
           <div
             className="absolute top-[100%] right-1/2 translate-x-1/2 mt-2 w-[200px] md:w-[260px]
              bg-white shadow-xl rounded-xl p-4 text-xs md:text-sm text-stone-700
-             opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out
+             opacity-0 group-hover:opacity-100 -z-10 group-hover:z-10 transition-all duration-300 ease-in-out
              border border-stone-200 font-semibold"
           >
             {isAuth ? (

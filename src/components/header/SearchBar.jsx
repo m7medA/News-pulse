@@ -19,7 +19,7 @@ function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex justify-evenly w-full lg:w-[62%] rounded-md px-2 py-1 bg-gray-100 border-gray-300 transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-lg"
+      className="flex justify-evenly w-full lg:w-[62%] rounded-md px-3 py-2 bg-gray-100 border-gray-300 transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-lg"
     >
       <label htmlFor="search" className="flex flex-col justify-center">
         <IoSearch className="text-2xl third-color" />

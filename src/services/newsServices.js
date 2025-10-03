@@ -1,10 +1,5 @@
 import axiosClient from "./axiosClient";
 
-export const getCategories = async () => {
-  const request = await axiosClient.get("/category/");
-  return request.data;
-};
-
 export const getLatestNews = async () => {
   const request = await axiosClient.get("/news/");
   return request.data;

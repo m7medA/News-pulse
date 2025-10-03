@@ -5,6 +5,7 @@ import FormRow from "../../components/FormRow";
 import Button from "../../components/Button";
 import Form from "../../components/Form";
 import { useAuth } from "../../context/AuthContext";
+import TextInput from "../../components/TextInput";
 
 function Signup() {
   const {
@@ -19,29 +20,29 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  async function onSubmit({ email, username, password, role }) {
+  async function onSubmit({ username, email, password, role }) {
     password = String(password);
 
-    const response = await signup({ email, username, password, role });
+    // const response = await signup({ email, username, password, role });
 
-    if (response.success) {
-      navigate("/");
-      reset();
-    }
+    // if (response.success) {
+    //   navigate("/");
+    //   reset();
+    // }
 
-    if (response.message.username) {
-      setError("username", {
-        type: "server",
-        message: response.message.username[0],
-      });
-    }
+    // if (response.message.username) {
+    //   setError("username", {
+    //     type: "server",
+    //     message: response.message.username[0],
+    //   });
+    // }
 
-    if (response.message.email) {
-      setError("email", {
-        type: "server",
-        message: response.message.email[0],
-      });
-    }
+    // if (response.message.email) {
+    //   setError("email", {
+    //     type: "server",
+    //     message: response.message.email[0],
+    //   });
+    // }
   }
 
   return (
@@ -49,47 +50,55 @@ function Signup() {
       <Form handleSubmit={handleSubmit(onSubmit)}>
         <FormRow
           id="username"
+          label="username"
           type="text"
-          register={register("username", {
-            required:
-              " 150 characters or fewer. Letters, digits and @/./+/-/_ only !",
-          })}
           error={errors.username}
-          placeholder="username"
         >
-          username
+          <TextInput
+            id="username"
+            type="text"
+            register={register("username", {
+              required:
+                " 150 characters or fewer. Letters, digits and @/./+/-/_ only !",
+            })}
+            error={errors.username}
+            placeholder="username"
+          />
         </FormRow>
 
-        <FormRow
-          id="email"
-          type="email"
-          register={register("email", {
-            required: "This field is required !",
-          })}
-          error={errors.email}
-          placeholder="someone@gmail.com"
-        >
-          email
+        <FormRow id="email" label="email" type="email" error={errors.email}>
+          <TextInput
+            id="email"
+            type="email"
+            register={register("email", {
+              required: "This field is required !",
+            })}
+            error={errors.email}
+            placeholder="someone@gmail.com"
+          />
         </FormRow>
 
-        <FormRow
-          id="password"
-          type="password"
-          register={register("password", {
-            required: "This field is required !",
-          })}
-          error={errors.password}
-          placeholder="********"
-        >
-          password
+        <FormRow id="password" type="password" error={errors.password}>
+          <TextInput
+            id="password"
+            type="password"
+            register={register("password", {
+              required: "This field is required !",
+            })}
+            error={errors.password}
+            placeholder="********"
+          />
         </FormRow>
 
-        <FormRow
+        <select
           id="role"
-          type="role"
-          register={register("role", { required: "This field is required !" })}
-          element="select"
-        />
+          {...register("role", { required: "This field is required !" })}
+          className={`border border-stone-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2  w-fit`}
+        >
+          <option value="">Select role</option>
+          <option value="admin">Admin</option>
+          <option value="author">Author</option>
+        </select>
 
         <Button type="submit" color="bg-green-600 hover:bg-green-700">
           sign up

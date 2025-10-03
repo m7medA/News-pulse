@@ -1,32 +1,46 @@
+import { useState } from "react";
 import List from "../List";
-import Loading from "../Loading";
 
 function ArticlesContianer({
   type = "category",
   keyWord,
-  articles,
+  data,
   isLoading,
   error,
 }) {
-  if (isLoading)
-    return (
-      <div className="relative h-80">
-        <Loading />
-      </div>
-    );
+  const {
+    page,
+    articles,
+    total_pages: totalPages,
+    total_articles: totalArticles,
+  } = data;
+
+  const [currentPage, setCurrentPage] = useState(page);
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
   return (
     <section className="flex flex-col gap-8">
       <div className="text-lg sm:text-xl md:text-3xl font-semibold border-b-2 py-2">
         {type === "category" ? (
           <h2>
-            Discover <span className="third-color">{articles.length}</span>{" "}
+            Discover <span className="third-color">{totalArticles}</span>{" "}
             articles from{" "}
             <span className="capitalize third-color">"{keyWord}"</span>
           </h2>
         ) : (
           <h2>
-            🔎 Here are <span className="third-color">{articles.length}</span>{" "}
+            🔎 Here are <span className="third-color">{totalArticles}</span>{" "}
             results for{" "}
             <span className="capitalize third-color">"{keyWord}"</span>
           </h2>
@@ -34,6 +48,28 @@ function ArticlesContianer({
       </div>
 
       <List articles={articles} />
+
+      <div className="flex items-center justify-center gap-4 mt-6">
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className="px-4 py-2 rounded-md bg-gray-200 disabled:opacity-50 cursor-pointer"
+        >
+          Prev
+        </button>
+
+        <p className="text-gray-700">
+          Page <strong>{currentPage}</strong> of <strong>{totalPages}</strong>
+        </p>
+
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 rounded-md bg-gray-200 disabled:opacity-50 cursor-pointer"
+        >
+          Next
+        </button>
+      </div>
     </section>
   );
 }

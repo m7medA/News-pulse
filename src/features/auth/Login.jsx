@@ -5,6 +5,7 @@ import Form from "../../components/Form";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { useAuth } from "../../context/AuthContext";
+import TextInput from "../../components/TextInput";
 
 function Login() {
   const {
@@ -41,25 +42,32 @@ function Login() {
       <Form handleSubmit={handleSubmit(onSubmit)}>
         <FormRow
           id="username"
+          label="username"
           type="text"
-          register={register("username", {
-            required: "This field is required !",
-          })}
           error={errors.username}
-          placeholder="username"
         >
-          username
+          <TextInput
+            id="username"
+            type="text"
+            register={register("username", {
+              required:
+                " 150 characters or fewer. Letters, digits and @/./+/-/_ only !",
+            })}
+            error={errors.username}
+            placeholder="username"
+          />
         </FormRow>
-        <FormRow
-          id="password"
-          type="password"
-          register={register("password", {
-            required: "This field is required !",
-          })}
-          error={errors.password}
-          placeholder="********"
-        >
-          password
+
+        <FormRow id="password" type="password" error={errors.password}>
+          <TextInput
+            id="password"
+            type="password"
+            register={register("password", {
+              required: "This field is required !",
+            })}
+            error={errors.password}
+            placeholder="********"
+          />
         </FormRow>
 
         {errors.cerdential && (

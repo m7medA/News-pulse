@@ -19,6 +19,16 @@ const AuthLayout = lazy(() => import("./layouts/AuthLayout"));
 const Login = lazy(() => import("./features/auth/Login"));
 const Signup = lazy(() => import("./features/auth/Signup"));
 
+const AdminPage = lazy(() => import("./pages/AdminPage"));
+const HomeDashboard = lazy(() => import("./features/dashboard/HomeDashboard"));
+const ArticlesDashboard = lazy(
+  () => import("./features/dashboard/ArticlesDashboard")
+);
+const AuthorDashboard = lazy(
+  () => import("./features/dashboard/AuthorDashboard")
+);
+const ArticlePage = lazy(() => import("./features/dashboard/ArticlePage"));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -50,6 +60,23 @@ function App() {
         { index: true, element: <Navigate to="login" replace /> },
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
+      ],
+    },
+    {
+      path: "/adminpage",
+      element: <AdminPage />,
+      children: [
+        { index: true, element: <Navigate to="homedashboard" replace /> },
+        { path: "homedashboard", element: <HomeDashboard /> },
+        {
+          path: "articlesdashboard",
+          element: <ArticlesDashboard />,
+        },
+        {
+          path: "authordashboard",
+          element: <AuthorDashboard />,
+        },
+        { path: "articlepage/:articleID", element: <ArticlePage /> },
       ],
     },
   ]);

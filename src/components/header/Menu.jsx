@@ -1,21 +1,21 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import Button from "../Button";
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const queryClient = useQueryClient();
-
-  const data = queryClient.getQueryData(["categories"]);
-
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ["category"],
-  //   queryFn: getCategories,
-  // });
+  const categories = [
+    "business",
+    "entertainment",
+    "health",
+    "science",
+    "sports",
+    "technology",
+  ];
 
   return (
     <div className="flex flex-col justify-center">
@@ -45,7 +45,7 @@ function Menu() {
         }`}
       >
         <div className="p-4 border-b-2 border-t-2 flex justify-between items-center">
-          <h2 className="font-bold">Categories</h2>
+          <h2 className="font-bold text-lg md:text-2xl">Categories</h2>
 
           <button
             onClick={() => setIsOpen(false)}
@@ -58,12 +58,22 @@ function Menu() {
           </button>
         </div>
         <ul className="py-4 space-y-3">
-          {data?.categories?.map((cat) => (
+          <li key="general" onClick={() => setIsOpen((open) => !open)}>
+            <NavLink
+              to={`/`}
+              className={({ isActive }) =>
+                `hover:border-l-4 border-[var(--third-color)] hover:text-[var(--third-color)] ${isActive ? "text-[var(--third-color)] border-l-4" : ""} px-4 transition-all duration-300 capitalize`
+              }
+            >
+              general
+            </NavLink>
+          </li>
+          {categories?.map((cat) => (
             <li key={cat} onClick={() => setIsOpen((open) => !open)}>
               <NavLink
                 to={`/categorypage/${cat}`}
                 className={({ isActive }) =>
-                  `hover:border-l-4 border-[var(--third-color)] hover:text-[var(--third-color)] ${isActive ? "text-[var(--third-color)] border-l-4" : ""} px-4 transition-all duration-300 capitalize`
+                  `hover:border-l-4 border-[var(--third-color)]  hover:text-[var(--third-color)] ${isActive ? "text-[var(--third-color)] border-l-4" : ""} px-4 transition-all duration-300 capitalize`
                 }
               >
                 {cat}
@@ -71,6 +81,15 @@ function Menu() {
             </li>
           ))}
         </ul>
+
+        <div className="my-10 text-center ">
+          <NavLink
+            to="/adminpage"
+            className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
+          >
+            Admin Dashboard
+          </NavLink>
+        </div>
       </aside>
     </div>
   );

@@ -2,9 +2,18 @@ import { useAuth } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 
 import Button from "../components/Button";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileData } from "../services/userServices";
 
 function UserInfoPage() {
-  const { isAuth, logout } = useAuth();
+  const { isAuth, token, logout } = useAuth();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["dataProfile", isAuth],
+    queryFn: () => getProfileData(token),
+  });
+
+  console.log(data);
 
   return (
     <section className="py-8 px-2 h-80 flex flex-col justify-center">
@@ -19,7 +28,7 @@ function UserInfoPage() {
             onClick={() => logout()}
             color="bg-[var(--third-color)] hover:opacity-90"
           >
-            Log out
+            Logout
           </Button>
         </div>
       ) : (
