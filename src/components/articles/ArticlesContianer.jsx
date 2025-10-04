@@ -5,8 +5,8 @@ function ArticlesContianer({
   type = "category",
   keyWord,
   data,
-  isLoading,
-  error,
+  currentPage,
+  setCurrentPage,
 }) {
   const {
     page,
@@ -15,17 +15,15 @@ function ArticlesContianer({
     total_articles: totalArticles,
   } = data;
 
-  const [currentPage, setCurrentPage] = useState(page);
-
   const handlePrev = () => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+      setCurrentPage((currentPage) => currentPage - 1);
     }
   };
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
+      setCurrentPage((currentPage) => currentPage + 1);
     }
   };
 
@@ -49,7 +47,7 @@ function ArticlesContianer({
 
       <List articles={articles} />
 
-      <div className="flex items-center justify-center gap-4 mt-6">
+      <div className="flex items-center justify-center gap-4 mt-2">
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
@@ -59,7 +57,7 @@ function ArticlesContianer({
         </button>
 
         <p className="text-gray-700">
-          Page <strong>{currentPage}</strong> of <strong>{totalPages}</strong>
+          Page <strong>{page}</strong> of <strong>{totalPages}</strong>
         </p>
 
         <button

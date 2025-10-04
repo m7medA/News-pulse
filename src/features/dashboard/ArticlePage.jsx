@@ -20,6 +20,7 @@ function ArticlePage() {
 
   function onEdit() {
     console.log("edit");
+    navigate("/adminpage/editarticle");
   }
 
   function onDelete() {

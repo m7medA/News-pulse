@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { useAuth } from "../../context/AuthContext";
 import TextInput from "../../components/TextInput";
+import { useState } from "react";
 
 function Login() {
+  const [errorMessage, setErrorMessage] = useState();
   const {
     register,
     handleSubmit,
@@ -20,20 +22,17 @@ function Login() {
 
   const navigate = useNavigate();
 
-  async function onSubmit({ username, password }) {
+  async function onSubmit({ username, password, role }) {
     password = String(password);
 
-    const response = await login({ username, password });
+    const response = await login({ username, password, role });
 
     if (response.success) {
       navigate("/");
       reset();
     }
     if (response.message) {
-      setError("cerdential", {
-        type: "server",
-        message: response.message.non_field_errors[0],
-      });
+      setErrorMessage((errorMessage) => (errorMessage = response.message));
     }
   }
 
@@ -70,9 +69,19 @@ function Login() {
           />
         </FormRow>
 
-        {errors.cerdential && (
+        <select
+          id="role"
+          {...register("role", { required: "This field is required !" })}
+          className={`border border-stone-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2  w-fit cursor-pointer`}
+        >
+          <option value="">Select role</option>
+          <option value="admin">Admin</option>
+          <option value="author">Author</option>
+        </select>
+
+        {errorMessage && (
           <p className="text-center text-sm font-semibold text-[var(--third-color)]">
-            {errors.cerdential.message}
+            {errorMessage}
           </p>
         )}
 

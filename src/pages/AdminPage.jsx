@@ -4,7 +4,6 @@ import DateItem from "../components/DateItem";
 import HeaderUtilityBar from "../components/header/HeaderUtilityBar";
 import Menu from "../components/header/Menu";
 import UserInfo from "../components/header/UserInfo";
-import Logo from "../components/Logo";
 import Header from "../layouts/Header";
 import { useState } from "react";
 import { FaCaretSquareRight } from "react-icons/fa";
@@ -23,10 +22,6 @@ function AdminPage() {
             <Menu />
           </div>
         </HeaderUtilityBar>
-
-        <div className="border-b-2 py-4 md:py-6 flex justify-center mx-auto">
-          <Logo />
-        </div>
       </Header>
 
       {/* ====== Main Layout ====== */}
@@ -58,7 +53,7 @@ function AdminPage() {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 p-4 overflow-y-auto bg-stone-100">
+        <main className="flex-1 p-4 overflow-y-auto bg-stone-200">
           <h1 className="text-2xl font-bold third-color">Admin Dashboard</h1>
           <Outlet />
         </main>

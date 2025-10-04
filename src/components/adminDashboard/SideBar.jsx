@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
+import Logo from "../Logo";
 
 function SideBar() {
   return (
-    <aside className="h-full rounded-r-md w-48 lg:w-56 bg-stone-100 border-2 border-black  flex flex-col py-4">
-      <h2 className="text-lg md:text-2xl font-bold px-4 mb-6 third-color">
-        Admin Panel
-      </h2>
+    <aside className="h-full rounded-r-md w-48 lg:w-56 bg-stone-200 border-2 border-black  flex flex-col gap-8 py-4">
+      <div className="w-[80%] mx-auto pt-2">
+        <Logo />
+      </div>
       <nav className="flex flex-col gap-2 px-2">
         <NavLink
           to="/adminpage/homedashboard"

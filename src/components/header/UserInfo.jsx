@@ -12,7 +12,7 @@ function UserInfo() {
     <div className="group relative flex flex-col justify-center">
       <div className="hover:text-[var(--third-color)] transition-colors duration-300">
         <NavLink
-          to="userinfo"
+          to="/userinfo"
           className={({ isActive }) =>
             `${isActive ? "text-[var(--third-color)]" : ""}`
           }
@@ -37,7 +37,7 @@ function UserInfo() {
                   onClick={() => logout()}
                   color="bg-[var(--third-color)] hover:opacity-90"
                 >
-                  Logout
+                  <NavLink to="/">Logout</NavLink>
                 </Button>
               </div>
             ) : (

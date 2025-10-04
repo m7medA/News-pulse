@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import ArticlesList from "./ArticlesList";
 import { getArticles } from "../../services/dashboardServices";
 import { useAuth } from "../../context/AuthContext";
-import Button from "../../components/Button";
 
 function ArticlesDashboard() {
   const { token } = useAuth();
@@ -12,11 +11,13 @@ function ArticlesDashboard() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["articles"],
+    queryKey: ["articles", token],
     queryFn: () => getArticles(token),
   });
 
   if (isLoading) return <p>Loading</p>;
+
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div className="py-2 ">

@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
 function Form({ children, handleSubmit }) {
@@ -11,7 +10,7 @@ function Form({ children, handleSubmit }) {
         <Logo />
       </div>
 
-      <div className="bg-[#ECECF0] p-1 rounded-xl flex justify-between text-center font-semibold">
+      {/* <div className="bg-[#ECECF0] p-1 rounded-xl flex justify-between text-center font-semibold">
         <NavLink
           to="/auth/login"
           className={({ isActive }) =>
@@ -21,15 +20,8 @@ function Form({ children, handleSubmit }) {
           Login
         </NavLink>
 
-        <NavLink
-          to="/auth/signup"
-          className={({ isActive }) =>
-            `w-[50%] rounded-xl ${isActive ? "bg-white" : ""}`
-          }
-        >
-          Sign up
-        </NavLink>
-      </div>
+        
+      </div> */}
 
       {children}
     </form>

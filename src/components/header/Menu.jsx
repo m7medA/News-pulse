@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
-import Button from "../Button";
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { role } = useAuth();
 
   const categories = [
     "business",
@@ -82,14 +84,25 @@ function Menu() {
           ))}
         </ul>
 
-        <div className="my-10 text-center ">
-          <NavLink
-            to="/adminpage"
-            className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
-          >
-            Admin Dashboard
-          </NavLink>
-        </div>
+        {role && (
+          <div className="my-10 text-center ">
+            {role === "admin" ? (
+              <NavLink
+                to="/adminpage"
+                className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
+              >
+                Admin Dashboard
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/adminpage"
+                className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
+              >
+                Author Dashboard
+              </NavLink>
+            )}
+          </div>
+        )}
       </aside>
     </div>
   );
