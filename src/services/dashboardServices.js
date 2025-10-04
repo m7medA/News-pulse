@@ -24,14 +24,14 @@ export async function getArticleByID({ articleID }) {
   }
 }
 
-export async function updateArticle({ token, articleID, updateData }) {
-  try {
-    const request = await axiosClient.put(`/articles/${articleID}/`, {
-      headers: `Token ${token}`,
-    });
-    return request.data;
-  } catch (error) {
-    console.error("Error fetching articles:", error);
-    throw error;
-  }
-}
+// export async function updateArticle({ token, articleID, updateData }) {
+//   try {
+//     const request = await axiosClient.put(`/articles/${articleID}/`, {
+//       headers: `Token ${token}`,
+//     });
+//     return request.data;
+//   } catch (error) {
+//     console.error("Error fetching articles:", error);
+//     throw error;
+//   }
+// }
