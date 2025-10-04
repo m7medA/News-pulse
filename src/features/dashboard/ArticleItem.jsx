@@ -5,11 +5,13 @@ function ArticleItem({ article }) {
     <li>
       <NavLink
         to={`/adminpage/articlepage/${article.id}`}
-        className="flex items-center justify-between p-4 border rounded-md shadow-sm hover:shadow-md transition-all"
+        className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-0 p-4 border rounded-md shadow-sm hover:shadow-md transition-all"
       >
         {/* ==== Article Info ==== */}
-        <div className="flex flex-col max-w-[70%]">
-          <span className="font-semibold text-lg">{article.title}</span>
+        <div className="flex flex-col gap-2 md:max-w-[70%]">
+          <span className="font-semibold text-base md:text-lg">
+            {article.title}
+          </span>
           <span className="text-sm text-gray-500">
             By {article.author} •{" "}
             {new Date(article.published_date).toLocaleDateString()}

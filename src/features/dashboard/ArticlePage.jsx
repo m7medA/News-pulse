@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getArticleByID } from "../../services/dashboardServices";
-import { useAuth } from "../../context/AuthContext";
 import Button from "../../components/Button";
 
 function ArticlePage() {
@@ -19,8 +18,7 @@ function ArticlePage() {
   const navigate = useNavigate();
 
   function onEdit() {
-    console.log("edit");
-    navigate("/adminpage/editarticle");
+    navigate(`/adminpage/editarticle/${articleID}`);
   }
 
   function onDelete() {
@@ -29,7 +27,7 @@ function ArticlePage() {
 
   if (isLoading) return <p>Loading...</p>;
 
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div className="flex flex-col gap-4 p-4 bg-white rounded shadow">

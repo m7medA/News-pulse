@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./features/auth/ProtectedRoute";
 
 const Loading = lazy(() => import("./components/Loading"));
 const AppLayout = lazy(() => import("./layouts/AppLayout"));
@@ -28,6 +29,7 @@ const AuthorDashboard = lazy(
 );
 const ArticlePage = lazy(() => import("./features/dashboard/ArticlePage"));
 const EditeArticle = lazy(() => import("./features/dashboard/EditeArticle"));
+const AddArticle = lazy(() => import("./features/dashboard/AddArticle"));
 
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
@@ -65,7 +67,11 @@ function App() {
     },
     {
       path: "/adminpage",
-      element: <AdminPage />,
+      element: (
+        <ProtectedRoute>
+          <AdminPage />
+        </ProtectedRoute>
+      ),
       children: [
         { index: true, element: <Navigate to="homedashboard" replace /> },
         { path: "homedashboard", element: <HomeDashboard /> },
@@ -73,12 +79,13 @@ function App() {
           path: "articlesdashboard",
           element: <ArticlesDashboard />,
         },
+        { path: "articlepage/:articleID", element: <ArticlePage /> },
+        { path: "editArticle/:articleID", element: <EditeArticle /> },
+        { path: "addarticle", element: <AddArticle /> },
         {
           path: "authordashboard",
           element: <AuthorDashboard />,
         },
-        { path: "articlepage/:articleID", element: <ArticlePage /> },
-        { path: "editArticle", element: <EditeArticle /> },
       ],
     },
     { path: "*", element: <PageNotFound /> },

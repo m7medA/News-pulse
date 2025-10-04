@@ -28,7 +28,7 @@ function Login() {
     const response = await login({ username, password, role });
 
     if (response.success) {
-      navigate("/");
+      navigate("/adminpage");
       reset();
     }
     if (response.message) {

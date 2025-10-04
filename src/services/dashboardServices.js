@@ -24,3 +24,13 @@ export async function getArticleByID({ articleID }) {
     throw error;
   }
 }
+
+// export async function updateArticle(params) {
+//   try {
+//     const request = await axiosClient.put(`/articles/${articleID}`);
+//     return request.data;
+//   } catch (error) {
+//     console.error("Error fetching articles:", error);
+//     throw error;
+//   }
+// }
