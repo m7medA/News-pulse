@@ -17,6 +17,8 @@ function SearchResultPage() {
     queryFn: () => getSearchResult({ query, currentPage }),
   });
 
+  console.log(data);
+
   if (isLoading)
     return (
       <div className="relative h-80">
