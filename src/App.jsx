@@ -6,7 +6,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./features/auth/ProtectedRoute";
 
 const Loading = lazy(() => import("./components/Loading"));
 const AppLayout = lazy(() => import("./layouts/AppLayout"));
@@ -15,10 +14,12 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const SearchResultPage = lazy(() => import("./pages/SearchResultPage"));
 const UserInfoPage = lazy(() => import("./pages/UserInfoPage"));
+const ChangePassword = lazy(() => import("./features/auth/ChangePassword"));
 
 const AuthLayout = lazy(() => import("./layouts/AuthLayout"));
 const Login = lazy(() => import("./features/auth/Login"));
 
+const ProtectedRoute = lazy(() => import("./features/auth/ProtectedRoute"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
 const HomeDashboard = lazy(() => import("./features/dashboard/HomeDashboard"));
 const ArticlesDashboard = lazy(
@@ -55,6 +56,7 @@ function App() {
         { path: "/categorypage/:category", element: <CategoryPage /> },
         { path: "/searchresultpage/:query", element: <SearchResultPage /> },
         { path: "/userinfo", element: <UserInfoPage /> },
+        { path: "/userinfo/changepassword", element: <ChangePassword /> },
       ],
     },
     {

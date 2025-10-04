@@ -11,26 +11,11 @@ import UserCard from "../components/UserCard";
 function UserInfoPage() {
   const { isAuth, token, logout } = useAuth();
 
-  const {
-    data: stop,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["dataProfile", isAuth],
     queryFn: () => getProfileData(token),
     enabled: isAuth,
   });
-
-  const data = {
-    id: 4,
-    username: "ALX",
-    email: "ALX@example.com",
-    role: "author",
-    // bio: null,
-    // profile_picture: null,
-    // created_at: "2025-10-03T18:40:21.000Z",
-    // updated_at: "2025-10-03T19:02:15.000Z",
-  };
 
   if (isLoading)
     return (
@@ -47,7 +32,7 @@ function UserInfoPage() {
     );
 
   return (
-    <section className="py-8 px-2 h-85 flex flex-col justify-center">
+    <section className="py-4 px-2 h-85 flex flex-col justify-center">
       {isAuth ? (
         <UserCard user={data} onLogout={logout} />
       ) : (

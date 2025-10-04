@@ -17,6 +17,8 @@ function ArticlesDashboard() {
     queryFn: () => getArticles(token),
   });
 
+  console.log(articles);
+
   const navigate = useNavigate();
 
   if (isLoading) return <p>Loading</p>;

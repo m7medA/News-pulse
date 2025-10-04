@@ -16,7 +16,7 @@ function PageNotFound() {
       </p>
 
       <Button color="bg-[var(--third-color)] hover:opacity-90">
-        <NavLink to="/" className="text-base md:text-lg">
+        <NavLink to={-1} className="text-base md:text-lg">
           Go Home
         </NavLink>
       </Button>

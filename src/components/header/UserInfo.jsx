@@ -2,11 +2,26 @@ import { NavLink, useLocation } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../Button";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileData } from "../../services/userServices";
 
 function UserInfo() {
-  const { isAuth, logout } = useAuth();
+  const { isAuth, logout, token } = useAuth();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["dataProfile", isAuth],
+    queryFn: () => getProfileData(token),
+    enabled: isAuth,
+  });
 
   const location = useLocation();
+
+  if (isLoading)
+    return (
+      <div className="relative h-80 flex items-center justify-center">
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
     <div className="group relative flex flex-col justify-center">
@@ -30,8 +45,10 @@ function UserInfo() {
             {isAuth ? (
               <div className="flex flex-col gap-3 text-xs md:text-sm">
                 <div className="flex flex-col gap-1 border-b pb-2">
-                  <p className="font-semibold text-stone-900">Mohamed</p>
-                  <p className="text-stone-500 ">moh@gmail.com</p>
+                  <p className="font-semibold text-stone-900">
+                    {data.username}
+                  </p>
+                  <p className="text-stone-500 ">{data.email}</p>
                 </div>
                 <Button
                   onClick={() => logout()}

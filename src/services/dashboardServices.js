@@ -1,8 +1,9 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
 
 export async function getArticles(token) {
   try {
-    const request = await axiosClient.get("/auth/articles/", {
+    const request = await axios.get("/admin", {
       headers: {
         Authorization: `Token ${token}`,
       },

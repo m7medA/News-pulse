@@ -5,7 +5,26 @@ export async function getProfileData(token) {
     headers: { Authorization: `Token ${token}` },
   });
 
-  console.log(request.data);
-
   return request.data;
+}
+
+export async function updatePassword({ token, oldPassword, newPassword }) {
+  console.log(oldPassword);
+
+  try {
+    const request = await axiosClient.post(
+      "/auth/password-change/",
+      {
+        old_password: oldPassword,
+        new_password: newPassword,
+      },
+      {
+        headers: { Authorization: `Token ${token}` },
+      }
+    );
+
+    return request.data;
+  } catch (error) {
+    throw error;
+  }
 }

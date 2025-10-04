@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 
 function ArticleItem({ article }) {
+  console.log(article);
+
   return (
     <li>
       <NavLink

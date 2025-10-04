@@ -10,11 +10,11 @@ import { useState } from "react";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState();
+
   const {
     register,
     handleSubmit,
     reset,
-    setError,
     formState: { errors },
   } = useForm();
 
