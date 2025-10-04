@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getArticleByID } from "../../services/dashboardServices";
 import Form from "../../components/Form";
 import Button from "../../components/Button";
+import { updateArticle } from "../../services/newsServices";
 
 function EditArticle() {
   const { articleID } = useParams();
@@ -31,6 +32,7 @@ function EditArticle() {
       setFormData({
         title: article.title,
         content: article.content,
+        category: article.category,
       });
     }
   }, [article]);
@@ -44,23 +46,23 @@ function EditArticle() {
     }));
   }
 
-  // mutation for update
-  // const mutation = useMutation({
-  //   mutationFn: (updatedData) =>
-  //     updateArticle({ articleID, data: updatedData }),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(["article", articleID]);
-  //     console.log("Article updated successfully ✅");
-  //   },
-  //   onError: (err) => {
-  //     console.error(err);
-  //     console.log("Error updating article ❌");
-  //   },
-  // });
+  //mutation for update
+  const mutation = useMutation({
+    mutationFn: (updatedData) =>
+      updateArticle({ articleID, data: updatedData }),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["article", articleID]);
+      console.log("Article updated successfully ✅");
+    },
+    onError: (err) => {
+      console.error(err);
+      console.log("Error updating article ❌");
+    },
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    // mutation.mutate(formData);
+    mutation.mutate(formData);
   }
 
   if (isLoading) return <p>Loading...</p>;
@@ -92,13 +94,13 @@ function EditArticle() {
         />
       </div>
 
-      {/* <Button
+      <Button
         type="submit"
         color="bg-[var(--third-color)] hover:opacity-90"
         disabled={mutation.isLoading}
       >
         {mutation.isLoading ? "Updating..." : "Update Article"}
-      </Button> */}
+      </Button>
     </Form>
   );
 }

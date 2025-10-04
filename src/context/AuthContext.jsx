@@ -70,38 +70,6 @@ function AuthProvider({ children }) {
     }
   }
 
-  //signup//
-  /////////
-  // async function signup({ username, email, password, role }) {
-  //   try {
-  //     const request = await axiosClient.post("/auth/signup/", {
-  //       username,
-  //       email,
-  //       password,
-  //       role,
-  //     });
-
-  //     if (request.data) {
-  //       dispatch({ type: "login", payload: request.data });
-  //       return { success: true, message: null };
-  //     }
-  //   } catch (error) {
-  //     if (error.response) {
-  //       // reponse error
-  //       console.error("Error response:", error.response.data);
-  //       return {
-  //         success: false,
-  //         message: error.response.data || "Login failed",
-  //       };
-  //     }
-  //     if (error.request) {
-  //       // not receive resond
-  //       console.error("No response received:", error.request);
-  //       return { success: false, message: "No response from server" };
-  //     }
-  //   }
-  // }
-
   async function logout() {
     dispatch({ type: "logout" });
   }

@@ -22,12 +22,6 @@ function ArticleItem({ article }) {
             Category:{" "}
             <span className="font-medium third-color">{article.category}</span>
           </span>
-          <span className="text-sm text-gray-700">
-            Tags:{" "}
-            <span className="italic text-gray-600">
-              {article.tags.split(",").join(", ")}
-            </span>
-          </span>
         </div>
 
         {/* ==== Actions ==== */}

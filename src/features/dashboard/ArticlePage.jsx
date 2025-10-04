@@ -42,9 +42,6 @@ function ArticlePage() {
         <p>
           <strong>Category:</strong> {article.category}
         </p>
-        <p>
-          <strong>Tags:</strong> {article.tags}
-        </p>
       </div>
 
       <div className=" mt-4 flex justify-between">
