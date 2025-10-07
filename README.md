@@ -93,5 +93,6 @@ This hook also powers **route protection**, redirecting unauthorized users when 
 
 ## 👤 Contribution
 
-- **Front-End Development:** [Mohamed Ayman]  
-- **Back-End Development:** [https://github.com/Asmaa-Mahgoub](Asmaa Mahgoub)
+- **Front-End Development:** [Mohamed Ayman](https://github.com/m7medA)  
+- **Back-End Development:** [Asmaa Mahgoub](https://github.com/Asmaa-Mahgoub)
+
