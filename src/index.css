@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --main-color: #cccccc;
-  --second-color: #202124;
-  --third-color: #e63946;
+  --primary-color: #038dfd;
+  --accent-color: #242222;
+  --background-color: #f5f1dc;
+  --third-color: #73c8d2;
+  --text-main: #222222;
+  --text-secondary: #666666;
 }
 
-.text-color {
+.dark {
+  --primary-color: #4c7dff;
+  --accent-color: #ffb14d;
+  --background-color: #121212;
+  --third-color: #5fd0db;
+  --text-main: #f5f1dc;
+  --text-secondary: #b0b0b0;
+}
+
+/* .text-color {
   @apply text-[var(--second-color)];
 }
 
@@ -20,6 +32,6 @@
 
 .categoriesLink {
   @apply font-semibold hover:text-[var(--third-color)] transition-colors duration-300;
-}
+} */
 
 /*bg-gray-800 + text-white + placeholder-gray-40*/

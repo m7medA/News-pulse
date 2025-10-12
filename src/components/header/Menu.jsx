@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-import { GiCancel } from "react-icons/gi";
+import { HiMiniBars3BottomRight } from "react-icons/hi2";
+import CategoriesList from "./CategoriesList";
+import DropList from "../DropList";
 import { NavLink } from "react-router-dom";
 
 function Menu() {
@@ -13,6 +14,7 @@ function Menu() {
   const categories = [
     "business",
     "entertainment",
+
     "health",
     "science",
     "sports",
@@ -20,90 +22,74 @@ function Menu() {
   ];
 
   return (
-    <div className="flex flex-col justify-center">
-      {/* Right Side — Button Menu */}
+    <div className="group relative flex flex-col justify-center hover:text-[var(--primary-color)] transition-colors duration-300 cursor-pointer">
+      {/*Button Menu */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex justify-center gap-2 font-semibold hover:text-[var(--third-color)] transition-colors duration-300 cursor-pointer"
+        className="flex justify-center gap-2 font-semibold hover:text-[var(--primary-color)] transition-colors duration-300 cursor-pointer"
       >
         <span className="flex flex-col justify-center text-lg">
-          <FaRegArrowAltCircleLeft className="text-xl" />
+          <HiMiniBars3BottomRight
+            className="hover:text-[var(--primary-color)]"
+            size={28}
+          />
         </span>{" "}
-        <span className="flex flex-col justify-center font-semibold">Menu</span>
       </button>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-40"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 right-0 h-full w-48 sm:w-64 bg-white rounded-md shadow-lg z-50 transform transition-transform duration-300  ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+      <div
+        className="absolute top-[100%] right-0 mt-3 w-[220px] md:w-[260px]
+     bg-white shadow-xl rounded-xl p-3 md:p-4 text-sm text-stone-700
+     opacity-0 group-hover:opacity-100 -z-10 group-hover:z-10
+     transition-all duration-300 ease-in-out border border-stone-200
+     font-medium flex flex-col gap-2"
       >
-        <div className="p-4 border-b-2 border-t-2 flex justify-between items-center">
-          <h2 className="font-bold text-lg md:text-2xl">Categories</h2>
+        {/* 🏠 Home */}
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md transition-all duration-300 hover:bg-[var(--primary-color)] hover:text-white ${
+              isActive
+                ? "text-[var(--primary-color)] font-semibold border-l-4 border-[var(--primary-color)] bg-[var(--primary-color)]/5"
+                : ""
+            }`
+          }
+        >
+          Home
+        </NavLink>
 
-          <button
-            onClick={() => setIsOpen(false)}
-            className="hover:text-[var(--third-color)] transition-colors duration-300 cursor-pointer"
-          >
-            <span>
-              {" "}
-              <GiCancel className="text-xl" />
-            </span>
-          </button>
+        {/* 📂 Categories */}
+        <div className="px-3 py-2 hover:bg-stone-50 rounded-md transition-colors duration-300">
+          <DropList label="Categories" list={categories} />
         </div>
-        <ul className="py-4 space-y-3">
-          <li key="general" onClick={() => setIsOpen((open) => !open)}>
-            <NavLink
-              to={`/`}
-              className={({ isActive }) =>
-                `hover:border-l-4 border-[var(--third-color)] hover:text-[var(--third-color)] ${isActive ? "text-[var(--third-color)] border-l-4" : ""} px-4 transition-all duration-300 capitalize`
-              }
-            >
-              general
-            </NavLink>
-          </li>
-          {categories?.map((cat) => (
-            <li key={cat} onClick={() => setIsOpen((open) => !open)}>
-              <NavLink
-                to={`/categorypage/${cat}`}
-                className={({ isActive }) =>
-                  `hover:border-l-4 border-[var(--third-color)]  hover:text-[var(--third-color)] ${isActive ? "text-[var(--third-color)] border-l-4" : ""} px-4 transition-all duration-300 capitalize`
-                }
-              >
-                {cat}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
 
-        {role && (
-          <div className="my-10 text-center ">
-            {role === "admin" ? (
-              <NavLink
-                to="/adminpage"
-                className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
-              >
-                Admin Dashboard
-              </NavLink>
-            ) : (
-              <NavLink
-                to="/adminpage"
-                className="px-3 py-2 bg-[var(--third-color)] text-sm md:text-base rounded-md hover:opacity-90 cursor-pointer text-white"
-              >
-                Author Dashboard
-              </NavLink>
-            )}
-          </div>
-        )}
-      </aside>
+        {/* 👤 User Info */}
+        <NavLink
+          to="/userinfo"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md transition-all duration-300 hover:bg-[var(--primary-color)] hover:text-white ${
+              isActive
+                ? "text-[var(--primary-color)] font-semibold border-l-4 border-[var(--primary-color)] bg-[var(--primary-color)]/5"
+                : ""
+            }`
+          }
+        >
+          User Info
+        </NavLink>
+
+        {/* ℹ️ About Us */}
+        <NavLink
+          to="/aboutus"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md transition-all duration-300 hover:bg-[var(--primary-color)] hover:text-white ${
+              isActive
+                ? "text-[var(--primary-color)] font-semibold border-l-4 border-[var(--primary-color)] bg-[var(--primary-color)]/5"
+                : ""
+            }`
+          }
+        >
+          About Us
+        </NavLink>
+      </div>
     </div>
   );
 }

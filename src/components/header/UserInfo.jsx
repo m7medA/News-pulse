@@ -24,15 +24,15 @@ function UserInfo() {
     );
 
   return (
-    <div className="group relative flex flex-col justify-center">
-      <div className="hover:text-[var(--third-color)] transition-colors duration-300">
+    <div className="group relative flex flex-col justify-center hover:text-[var(--primary-color)] transition-colors duration-300 cursor-pointer">
+      <div className="">
         <NavLink
           to="/userinfo"
           className={({ isActive }) =>
-            `${isActive ? "text-[var(--third-color)]" : ""}`
+            `${isActive ? "text-[var(--primary-color)]" : ""}`
           }
         >
-          <FaUserCircle className="text-2xl sm:text-3xl" />
+          <FaUserCircle className="" size={28} />
         </NavLink>
 
         {location.pathname !== "/userinfo" && (
@@ -60,7 +60,7 @@ function UserInfo() {
             ) : (
               <div className="flex flex-col gap-3 text-center">
                 <p className="text-stone-500">Access your account to begin</p>
-                <Button color="bg-[var(--third-color)] hover:opacity-90">
+                <Button color="bg-[var(--primary-color)] hover:opacity-90">
                   <NavLink to="/auth">Get Started</NavLink>
                 </Button>
               </div>

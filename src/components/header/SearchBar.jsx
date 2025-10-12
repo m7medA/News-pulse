@@ -19,17 +19,24 @@ function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex justify-evenly w-full lg:w-[62%] rounded-md px-3 py-2 bg-gray-100 border-gray-300 transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-lg"
+      className="flex items-center gap-3 w-full lg:w-[60%] px-4 py-2.5 
+    bg-white border border-gray-200 rounded-xl 
+    shadow-sm hover:shadow-md hover:border-[var(--primary-color)] 
+    transition-all duration-300 ease-in-out"
     >
-      <label htmlFor="search" className="flex flex-col justify-center">
-        <IoSearch className="text-2xl third-color" />
+      <label htmlFor="search" className="flex items-center justify-center">
+        <IoSearch
+          className="text-[var(--primary-color)] opacity-90 hover:opacity-100 transition-all duration-200"
+          size={22}
+        />
       </label>
+
       <input
         type="text"
         id="search"
         {...register("query")}
         placeholder="Looking for something specific?"
-        className="w-[90%] outline-0"
+        className="w-full bg-transparent outline-none placeholder:text-gray-400 text-gray-700 text-sm md:text-base"
       />
     </form>
   );
